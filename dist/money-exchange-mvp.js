@@ -132,7 +132,7 @@ function reloadCSS() {
 
 module.exports = reloadCSS;
 
-},{"./bundle-url":7}],5:[function(require,module,exports) {
+},{"./bundle-url":7}],6:[function(require,module,exports) {
 
         var reloadCSS = require('_css_loader');
         module.hot.dispose(reloadCSS);
@@ -144,7 +144,7 @@ module.exports = reloadCSS;
         module.hot.dispose(reloadCSS);
         module.hot.accept(reloadCSS);
       
-},{"_css_loader":4}],6:[function(require,module,exports) {
+},{"_css_loader":4}],5:[function(require,module,exports) {
 /*!
  * money.js / fx() v0.2
  * Copyright 2014 Open Exchange Rates
@@ -334,10 +334,13 @@ document.addEventListener('DOMContentLoaded', function (e) {
   const secondSelect = document.getElementById('second-select');
 
   fetch('https://api.fixer.io/latest?base=BGN&symbols=RUB,USD,EUR,GBP,CNY,HUF').then(resp => resp.json()).then(data => _money2.default.rates = data.rates).then(() => {
-    const money = 1;
-    const exchangedMoney = exchangeMoney(money);
-    firstInput.value = money;
-    secondInput.value = exchangedMoney;
+    setTimeout(function () {
+      const money = 1;
+      const exchangedMoney = exchangeMoney(money);
+      firstInput.value = money;
+      secondInput.value = exchangedMoney;
+      firstInput.focus();
+    }, 1000);
   });
 
   const exchangeMoney = (amount, isReverse) => {
@@ -369,7 +372,7 @@ document.addEventListener('DOMContentLoaded', function (e) {
     firstInput.value = exchangeMoney(secondInput.value, true);
   };
 });
-},{"normalize.css":5,"./index.scss":3,"money":6}],14:[function(require,module,exports) {
+},{"normalize.css":6,"./index.scss":3,"money":5}],12:[function(require,module,exports) {
 
 var global = (1, eval)('this');
 var OldModule = module.bundle.Module;
@@ -389,7 +392,7 @@ module.bundle.Module = Module;
 
 if (!module.bundle.parent && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
-  var ws = new WebSocket('ws://' + hostname + ':' + '59554' + '/');
+  var ws = new WebSocket('ws://' + hostname + ':' + '50169' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
@@ -490,5 +493,5 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.require, id);
   });
 }
-},{}]},{},[14,2])
+},{}]},{},[12,2])
 //# sourceMappingURL=/dist/money-exchange-mvp.map

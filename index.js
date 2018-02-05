@@ -12,10 +12,13 @@ document.addEventListener('DOMContentLoaded', function (e) {
     .then((resp) => resp.json())
     .then((data) => fx.rates = data.rates)
     .then(() => {
-      const money = 1
-      const exchangedMoney = exchangeMoney(money)
-      firstInput.value = money
-      secondInput.value = exchangedMoney
+      setTimeout(function () {
+        const money = 1
+        const exchangedMoney = exchangeMoney(money)
+        firstInput.value = money
+        secondInput.value = exchangedMoney
+        firstInput.focus()
+      }, 1000);
     })
 
   const exchangeMoney = (amount, isReverse) => {
