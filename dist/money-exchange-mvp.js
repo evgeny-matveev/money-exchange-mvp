@@ -100,7 +100,7 @@ function getBaseURL(url) {
 exports.getBundleURL = getBundleURLCached;
 exports.getBaseURL = getBaseURL;
 
-},{}],5:[function(require,module,exports) {
+},{}],4:[function(require,module,exports) {
 var bundle = require('./bundle-url');
 
 function updateLink(link) {
@@ -132,19 +132,19 @@ function reloadCSS() {
 
 module.exports = reloadCSS;
 
-},{"./bundle-url":7}],6:[function(require,module,exports) {
+},{"./bundle-url":7}],5:[function(require,module,exports) {
 
         var reloadCSS = require('_css_loader');
         module.hot.dispose(reloadCSS);
         module.hot.accept(reloadCSS);
       
-},{"_css_loader":5}],4:[function(require,module,exports) {
+},{"_css_loader":4}],3:[function(require,module,exports) {
 
         var reloadCSS = require('_css_loader');
         module.hot.dispose(reloadCSS);
         module.hot.accept(reloadCSS);
       
-},{"_css_loader":5}],8:[function(require,module,exports) {
+},{"_css_loader":4}],6:[function(require,module,exports) {
 /*!
  * money.js / fx() v0.2
  * Copyright 2014 Open Exchange Rates
@@ -327,59 +327,59 @@ var _money2 = _interopRequireDefault(_money);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-fetch('https://api.fixer.io/latest').then(resp => resp.json()).then(data => _money2.default.rates = data.rates);
+fetch('https://api.fixer.io/latest?base=BGN&symbols=RUB,USD,EUR,GBP,CNY,HUF').then(resp => resp.json()).then(data => _money2.default.rates = data.rates);
 
-const currencyList = {
-  ruble: {
-    name: 'Рубли',
-    code: 'RUB'
-  },
-  dollar: {
-    name: 'Доллары',
-    code: 'USD'
-  },
-  euro: {
-    name: 'Евро',
-    code: 'EUR'
-  },
-  pound: {
-    name: 'Фунты',
-    code: 'GBP'
-  },
-  yuan: {
-    name: 'Юани',
-    code: 'CNY'
-  },
-  forint: {
-    name: 'Форинты',
-    code: 'HUF'
-  },
-  grivna: {
-    name: 'Гривны',
-    code: 'UAH'
-  }
-};
-
-let currency = {
-  start: currencyList.ruble.code,
-  final: currencyList.dollar.code
+let state = {
+  startInputValue: 0,
+  finalInputValue: 0,
+  startCurrency: 'USD',
+  finalCurrency: 'RUB'
 };
 
 document.addEventListener('DOMContentLoaded', function (e) {
   const startInput = document.getElementById('start-value-input');
   const finalInput = document.getElementById('final-value-input');
+  const startSelect = document.getElementById('start-select');
+  const finalSelect = document.getElementById('final-select');
 
   startInput.addEventListener('input', function (e) {
-    const result = (0, _money2.default)(this.value).from(currency.start).to(currency.final);
-    finalInput.value = Number(result).toFixed(2);
+    const { startCurrency, finalCurrency } = state;
+    const startInputValue = e.target.value;
+    const result = (0, _money2.default)(startInputValue).from(startCurrency).to(finalCurrency);
+    const finalInputValue = Number(result).toFixed(2);
+    finalInput.value = finalInputValue;
+    state.startInputValue = startInputValue;
+    state.finalInputValue = finalInputValue;
   });
 
   finalInput.addEventListener('input', function (e) {
-    const result = (0, _money2.default)(this.value).from(currency.final).to(currency.start);
-    startInput.value = Number(result).toFixed(2);
+    const { startCurrency, finalCurrency } = state;
+    const finalInputValue = e.target.value;
+    const result = (0, _money2.default)(finalInputValue).from(finalCurrency).to(startCurrency);
+    const startInputValue = Number(result).toFixed(2);
+    startInput.value = startInputValue;
+    state.startInputValue = startInputValue;
+    state.finalInputValue = finalInputValue;
   });
+
+  startSelect.onchange = function (e) {
+    const startCurrency = e.target.value;
+    const { startInputValue, finalCurrency } = state;
+    console.warn({ startInputValue, startCurrency, finalCurrency });
+    const result = (0, _money2.default)(startInputValue).from(startCurrency).to(finalCurrency);
+    finalInput.value = Number(result).toFixed(2);
+    state.startCurrency = startCurrency;
+  };
+
+  finalSelect.onchange = function (e) {
+    const finalCurrency = e.target.value;
+    const { finalInputValue, startCurrency } = state;
+    const result = (0, _money2.default)(finalInputValue).from(finalCurrency).to(startCurrency);
+    startInput.value = Number(result).toFixed(2);
+    state.finalCurrency = finalCurrency;
+  };
 });
-},{"normalize.css":6,"./index.scss":4,"money":8}],9:[function(require,module,exports) {
+},{"normalize.css":5,"./index.scss":3,"money":6}],11:[function(require,module,exports) {
 
 var global = (1, eval)('this');
 var OldModule = module.bundle.Module;
@@ -399,7 +399,7 @@ module.bundle.Module = Module;
 
 if (!module.bundle.parent && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
-  var ws = new WebSocket('ws://' + hostname + ':' + '53655' + '/');
+  var ws = new WebSocket('ws://' + hostname + ':' + '56605' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
@@ -500,5 +500,5 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.require, id);
   });
 }
-},{}]},{},[9,2])
+},{}]},{},[11,2])
 //# sourceMappingURL=/dist/money-exchange-mvp.map

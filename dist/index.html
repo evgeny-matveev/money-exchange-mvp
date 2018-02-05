@@ -5,11 +5,30 @@
     <title>Обмен валюты</title>
   <link rel="stylesheet" href="/dist/money-exchange-mvp.css"></head>
   <body>
+
     <h1>Обмен валюты</h1>
-    <div class="start-value-label">Рубли</div>
+
+    <select id="start-select">
+      <option value="RUB">Рубли</option>
+      <option value="USD" selected="">Доллары</option>
+      <option value="EUR">Евро</option>
+      <option value="GBP">Фунты</option>
+      <option value="CNY">Юани</option>
+      <option value="HUF">Форинты</option>
+    </select>
     <input type="number" id="start-value-input" value="">
-    <div class="final-value-label">Доллары</div>
+
+    <select id="final-select">
+      <option value="RUB" selected="">Рубли</option>
+      <option value="USD">Доллары</option>
+      <option value="EUR">Евро</option>
+      <option value="GBP">Фунты</option>
+      <option value="CNY">Юани</option>
+      <option value="HUF">Форинты</option>
+    </select>
     <input type="number" id="final-value-input" value="">
+
     <script src="/dist/money-exchange-mvp.js"></script>
+
   </body>
 </html>
