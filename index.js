@@ -42,7 +42,6 @@ document.addEventListener('DOMContentLoaded', function (e) {
   startSelect.onchange = function (e) {
     const startCurrency = e.target.value
     const { startInputValue, finalCurrency } = state
-    console.warn({startInputValue, startCurrency, finalCurrency});
     const result = fx(startInputValue).from(startCurrency).to(finalCurrency)
     finalInput.value = Number(result).toFixed(2)
     state.startCurrency = startCurrency

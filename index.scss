@@ -1,0 +1,60 @@
+body {
+  text-align: center;
+
+  color: #fff;
+  background-color: #000;
+
+  font-family: Arial;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: geometricPrecision;
+}
+
+select, input {
+  display: block;
+
+  margin: 0 auto;
+
+  color: #fff;
+  border: none;
+  outline: none;
+  background-color: #000;
+
+  -webkit-appearance: none;
+}
+
+h1 {
+  margin-top: 40%;
+  margin-bottom: 80px;
+
+  letter-spacing: 2px;
+  text-transform: uppercase;
+
+  font-size: 39px;
+  font-weight: bold;
+  font-style: italic;
+}
+
+select {
+  letter-spacing: 1px;
+  text-transform: uppercase;
+
+  font-size: 24px;
+  font-weight: bold;
+}
+
+input {
+  margin-top: 15px;
+  margin-bottom: 50px;
+
+  letter-spacing: 2px;
+
+  color: rgba(240, 29, 29, 0.4);
+
+  font-family: Digital-7 Italic;
+  font-size: 64px;
+  font-style: italic;
+  width: 70vw;
+  text-align: center;
+}
