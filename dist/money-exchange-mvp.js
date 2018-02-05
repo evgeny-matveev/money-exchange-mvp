@@ -69,7 +69,7 @@ require = (function (modules, cache, entry) {
 
   // Override the current require with this new one
   return newRequire;
-})({9:[function(require,module,exports) {
+})({7:[function(require,module,exports) {
 var bundleURL = null;
 function getBundleURLCached() {
   if (!bundleURL) {
@@ -132,7 +132,7 @@ function reloadCSS() {
 
 module.exports = reloadCSS;
 
-},{"./bundle-url":9}],7:[function(require,module,exports) {
+},{"./bundle-url":7}],6:[function(require,module,exports) {
 
         var reloadCSS = require('_css_loader');
         module.hot.dispose(reloadCSS);
@@ -144,7 +144,7 @@ module.exports = reloadCSS;
         module.hot.dispose(reloadCSS);
         module.hot.accept(reloadCSS);
       
-},{"_css_loader":5}],6:[function(require,module,exports) {
+},{"_css_loader":5}],8:[function(require,module,exports) {
 /*!
  * money.js / fx() v0.2
  * Copyright 2014 Open Exchange Rates
@@ -329,18 +329,57 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 fetch('https://api.fixer.io/latest').then(resp => resp.json()).then(data => _money2.default.rates = data.rates);
 
+const currencyList = {
+  ruble: {
+    name: 'Рубли',
+    code: 'RUB'
+  },
+  dollar: {
+    name: 'Доллары',
+    code: 'USD'
+  },
+  euro: {
+    name: 'Евро',
+    code: 'EUR'
+  },
+  pound: {
+    name: 'Фунты',
+    code: 'GBP'
+  },
+  yuan: {
+    name: 'Юани',
+    code: 'CNY'
+  },
+  forint: {
+    name: 'Форинты',
+    code: 'HUF'
+  },
+  grivna: {
+    name: 'Гривны',
+    code: 'UAH'
+  }
+};
+
+let currency = {
+  start: currencyList.ruble.code,
+  final: currencyList.dollar.code
+};
+
 document.addEventListener('DOMContentLoaded', function (e) {
   const startInput = document.getElementById('start-value-input');
   const finalInput = document.getElementById('final-value-input');
 
   startInput.addEventListener('input', function (e) {
-    const startValue = this.value;
-    const finalValue = (0, _money2.default)(startValue).from('RUB').to('USD');
-    startInput.value = startValue;
-    finalInput.value = Number(finalValue).toFixed(2);
+    const result = (0, _money2.default)(this.value).from(currency.start).to(currency.final);
+    finalInput.value = Number(result).toFixed(2);
+  });
+
+  finalInput.addEventListener('input', function (e) {
+    const result = (0, _money2.default)(this.value).from(currency.final).to(currency.start);
+    startInput.value = Number(result).toFixed(2);
   });
 });
-},{"normalize.css":7,"./index.scss":4,"money":6}],10:[function(require,module,exports) {
+},{"normalize.css":6,"./index.scss":4,"money":8}],9:[function(require,module,exports) {
 
 var global = (1, eval)('this');
 var OldModule = module.bundle.Module;
@@ -360,7 +399,7 @@ module.bundle.Module = Module;
 
 if (!module.bundle.parent && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
-  var ws = new WebSocket('ws://' + hostname + ':' + '49628' + '/');
+  var ws = new WebSocket('ws://' + hostname + ':' + '53655' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
@@ -461,5 +500,5 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.require, id);
   });
 }
-},{}]},{},[10,2])
+},{}]},{},[9,2])
 //# sourceMappingURL=/dist/money-exchange-mvp.map
