@@ -327,58 +327,49 @@ var _money2 = _interopRequireDefault(_money);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-fetch('https://api.fixer.io/latest?base=BGN&symbols=RUB,USD,EUR,GBP,CNY,HUF').then(resp => resp.json()).then(data => _money2.default.rates = data.rates);
-
-let state = {
-  startInputValue: 0,
-  finalInputValue: 0,
-  startCurrency: 'USD',
-  finalCurrency: 'RUB'
-};
-
 document.addEventListener('DOMContentLoaded', function (e) {
-  const startInput = document.getElementById('start-value-input');
-  const finalInput = document.getElementById('final-value-input');
-  const startSelect = document.getElementById('start-select');
-  const finalSelect = document.getElementById('final-select');
+  const firstInput = document.getElementById('first-value-input');
+  const secondInput = document.getElementById('second-value-input');
+  const firstSelect = document.getElementById('first-select');
+  const secondSelect = document.getElementById('second-select');
 
-  startInput.addEventListener('input', function (e) {
-    const { startCurrency, finalCurrency } = state;
-    const startInputValue = e.target.value;
-    const result = (0, _money2.default)(startInputValue).from(startCurrency).to(finalCurrency);
-    const finalInputValue = Number(result).toFixed(2);
-    finalInput.value = finalInputValue;
-    state.startInputValue = startInputValue;
-    state.finalInputValue = finalInputValue;
+  fetch('https://api.fixer.io/latest?base=BGN&symbols=RUB,USD,EUR,GBP,CNY,HUF').then(resp => resp.json()).then(data => _money2.default.rates = data.rates).then(() => {
+    const money = 1;
+    const exchangedMoney = exchangeMoney(money);
+    firstInput.value = money;
+    secondInput.value = exchangedMoney;
   });
 
-  finalInput.addEventListener('input', function (e) {
-    const { startCurrency, finalCurrency } = state;
-    const finalInputValue = e.target.value;
-    const result = (0, _money2.default)(finalInputValue).from(finalCurrency).to(startCurrency);
-    const startInputValue = Number(result).toFixed(2);
-    startInput.value = startInputValue;
-    state.startInputValue = startInputValue;
-    state.finalInputValue = finalInputValue;
-  });
-
-  startSelect.onchange = function (e) {
-    const startCurrency = e.target.value;
-    const { startInputValue, finalCurrency } = state;
-    const result = (0, _money2.default)(startInputValue).from(startCurrency).to(finalCurrency);
-    finalInput.value = Number(result).toFixed(2);
-    state.startCurrency = startCurrency;
+  const exchangeMoney = (amount, isReverse) => {
+    const firstCurrency = firstSelect.options[firstSelect.selectedIndex].value;
+    const secondCurrency = secondSelect.options[secondSelect.selectedIndex].value;
+    if (isReverse) {
+      const result = (0, _money2.default)(Number(amount)).from(secondCurrency).to(firstCurrency);
+      return Number(result).toFixed(2);
+    }
+    const result = (0, _money2.default)(Number(amount)).from(firstCurrency).to(secondCurrency);
+    return Number(result).toFixed(2);
   };
 
-  finalSelect.onchange = function (e) {
-    const finalCurrency = e.target.value;
-    const { finalInputValue, startCurrency } = state;
-    const result = (0, _money2.default)(finalInputValue).from(finalCurrency).to(startCurrency);
-    startInput.value = Number(result).toFixed(2);
-    state.finalCurrency = finalCurrency;
+  firstInput.addEventListener('input', e => {
+    const newExchangedValue = exchangeMoney(e.target.value);
+    secondInput.value = newExchangedValue;
+  });
+
+  secondInput.addEventListener('input', e => {
+    const newExchangedValue = exchangeMoney(e.target.value);
+    firstInput.value = newExchangedValue;
+  });
+
+  firstSelect.onchange = function () {
+    secondInput.value = exchangeMoney(firstInput.value);
+  };
+
+  secondSelect.onchange = function () {
+    firstInput.value = exchangeMoney(secondInput.value, true);
   };
 });
-},{"normalize.css":5,"./index.scss":3,"money":6}],8:[function(require,module,exports) {
+},{"normalize.css":5,"./index.scss":3,"money":6}],14:[function(require,module,exports) {
 
 var global = (1, eval)('this');
 var OldModule = module.bundle.Module;
@@ -398,7 +389,7 @@ module.bundle.Module = Module;
 
 if (!module.bundle.parent && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
-  var ws = new WebSocket('ws://' + hostname + ':' + '50631' + '/');
+  var ws = new WebSocket('ws://' + hostname + ':' + '59554' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
@@ -499,5 +490,5 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.require, id);
   });
 }
-},{}]},{},[8,2])
+},{}]},{},[14,2])
 //# sourceMappingURL=/dist/money-exchange-mvp.map

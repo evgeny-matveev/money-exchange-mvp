@@ -2,56 +2,50 @@ import 'normalize.css'
 import styles from './index.scss'
 import fx from 'money'
 
-fetch('https://api.fixer.io/latest?base=BGN&symbols=RUB,USD,EUR,GBP,CNY,HUF')
-  .then((resp) => resp.json())
-  .then((data) => fx.rates = data.rates)
-
-let state = {
-  startInputValue: 0,
-  finalInputValue: 0,
-  startCurrency: 'USD',
-  finalCurrency: 'RUB'
-}
-
 document.addEventListener('DOMContentLoaded', function (e) {
-  const startInput = document.getElementById('start-value-input')
-  const finalInput = document.getElementById('final-value-input')
-  const startSelect = document.getElementById('start-select')
-  const finalSelect = document.getElementById('final-select')
+  const firstInput = document.getElementById('first-value-input')
+  const secondInput = document.getElementById('second-value-input')
+  const firstSelect = document.getElementById('first-select')
+  const secondSelect = document.getElementById('second-select')
 
-  startInput.addEventListener('input', function (e) {
-    const { startCurrency, finalCurrency } = state
-    const startInputValue = e.target.value
-    const result = fx(startInputValue).from(startCurrency).to(finalCurrency)
-    const finalInputValue = Number(result).toFixed(2)
-    finalInput.value = finalInputValue
-    state.startInputValue = startInputValue
-    state.finalInputValue = finalInputValue
-  })
+  fetch('https://api.fixer.io/latest?base=BGN&symbols=RUB,USD,EUR,GBP,CNY,HUF')
+    .then((resp) => resp.json())
+    .then((data) => fx.rates = data.rates)
+    .then(() => {
+      const money = 1
+      const exchangedMoney = exchangeMoney(money)
+      firstInput.value = money
+      secondInput.value = exchangedMoney
+    })
 
-  finalInput.addEventListener('input', function (e) {
-    const { startCurrency, finalCurrency } = state
-    const finalInputValue = e.target.value
-    const result = fx(finalInputValue).from(finalCurrency).to(startCurrency)
-    const startInputValue = Number(result).toFixed(2)
-    startInput.value = startInputValue
-    state.startInputValue = startInputValue
-    state.finalInputValue = finalInputValue
-  })
-
-  startSelect.onchange = function (e) {
-    const startCurrency = e.target.value
-    const { startInputValue, finalCurrency } = state
-    const result = fx(startInputValue).from(startCurrency).to(finalCurrency)
-    finalInput.value = Number(result).toFixed(2)
-    state.startCurrency = startCurrency
+  const exchangeMoney = (amount, isReverse) => {
+    const firstCurrency = firstSelect
+      .options[firstSelect.selectedIndex].value
+    const secondCurrency = secondSelect
+      .options[secondSelect.selectedIndex].value
+    if (isReverse) {
+      const result = fx(Number(amount)).from(secondCurrency).to(firstCurrency)
+      return Number(result).toFixed(2)
+    }
+    const result = fx(Number(amount)).from(firstCurrency).to(secondCurrency)
+    return Number(result).toFixed(2)
   }
 
-  finalSelect.onchange = function (e) {
-    const finalCurrency = e.target.value
-    const { finalInputValue, startCurrency } = state
-    const result = fx(finalInputValue).from(finalCurrency).to(startCurrency)
-    startInput.value = Number(result).toFixed(2)
-    state.finalCurrency = finalCurrency
+  firstInput.addEventListener('input', (e) => {
+    const newExchangedValue = exchangeMoney(e.target.value)
+    secondInput.value = newExchangedValue
+  })
+
+  secondInput.addEventListener('input', (e) => {
+    const newExchangedValue = exchangeMoney(e.target.value)
+    firstInput.value = newExchangedValue
+  })
+
+  firstSelect.onchange = function () {
+    secondInput.value = exchangeMoney(firstInput.value)
+  }
+
+  secondSelect.onchange = function () {
+    firstInput.value = exchangeMoney(secondInput.value, true)
   }
 })
