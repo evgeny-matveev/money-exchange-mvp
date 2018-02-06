@@ -20,8 +20,7 @@ document.addEventListener('DOMContentLoaded', function (e) {
         const exchangedMoney = exchangeMoney(money)
         firstInput.value = money
         secondInput.value = exchangedMoney
-        firstInput.focus()
-      }, 1000);
+      }, 1200);
     })
 
   const exchangeMoney = (amount, isReverse) => {
@@ -37,13 +36,23 @@ document.addEventListener('DOMContentLoaded', function (e) {
     return Number(result).toFixed(2)
   }
 
+  firstInput.onclick = function () {
+    firstInput.value = ''
+    secondInput.value = ''
+  }
+
+  secondInput.onclick = function () {
+    firstInput.value = ''
+    secondInput.value = ''
+  }
+
   firstInput.addEventListener('input', (e) => {
     const newExchangedValue = exchangeMoney(e.target.value)
     secondInput.value = newExchangedValue
   })
 
   secondInput.addEventListener('input', (e) => {
-    const newExchangedValue = exchangeMoney(e.target.value)
+    const newExchangedValue = exchangeMoney(e.target.value, true)
     firstInput.value = newExchangedValue
   })
 
