@@ -445,6 +445,10 @@ template {
 [hidden] {
   display: none;
 }
+@font-face {
+  font-family: 'Digital-7 Italic';
+  src: url("e447cf805150882175aec67d045c3a40.ttf") format("truetype"); }
+
 body {
   text-align: center;
   color: #fff;
@@ -500,9 +504,8 @@ input {
   color: #fb0013;
   box-shadow: inset 0 0 20px 5px rgba(208, 0, 15, 0.2);
   text-shadow: 0 0 35px rgba(210, 0, 0, 0.7);
-  font-family: Digital-7 Italic;
-  font-size: 15vw;
-  font-style: italic; }
+  font-family: 'Digital-7 Italic';
+  font-size: 15vw; }
 
 .top-back, .bottom-back {
   width: 100%;

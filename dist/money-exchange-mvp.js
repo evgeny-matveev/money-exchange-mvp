@@ -69,7 +69,7 @@ require = (function (modules, cache, entry) {
 
   // Override the current require with this new one
   return newRequire;
-})({9:[function(require,module,exports) {
+})({8:[function(require,module,exports) {
 var bundleURL = null;
 function getBundleURLCached() {
   if (!bundleURL) {
@@ -100,7 +100,7 @@ function getBaseURL(url) {
 exports.getBundleURL = getBundleURLCached;
 exports.getBaseURL = getBaseURL;
 
-},{}],4:[function(require,module,exports) {
+},{}],7:[function(require,module,exports) {
 var bundle = require('./bundle-url');
 
 function updateLink(link) {
@@ -132,19 +132,19 @@ function reloadCSS() {
 
 module.exports = reloadCSS;
 
-},{"./bundle-url":9}],7:[function(require,module,exports) {
+},{"./bundle-url":8}],6:[function(require,module,exports) {
 
         var reloadCSS = require('_css_loader');
         module.hot.dispose(reloadCSS);
         module.hot.accept(reloadCSS);
       
-},{"_css_loader":4}],3:[function(require,module,exports) {
+},{"_css_loader":7}],3:[function(require,module,exports) {
 
         var reloadCSS = require('_css_loader');
         module.hot.dispose(reloadCSS);
         module.hot.accept(reloadCSS);
       
-},{"./assets/top.png":[["ac9ba8d75c6840ca1b7fe32fabacc657.png",5],5],"./assets/bot.png":[["fcd9f2661a1602ac780598f20c2ed7bd.png",6],6],"_css_loader":4}],8:[function(require,module,exports) {
+},{"./assets/digital-7-italic.ttf":[["e447cf805150882175aec67d045c3a40.ttf",12],12],"./assets/top.png":[["ac9ba8d75c6840ca1b7fe32fabacc657.png",13],13],"./assets/bot.png":[["fcd9f2661a1602ac780598f20c2ed7bd.png",14],14],"_css_loader":7}],5:[function(require,module,exports) {
 /*!
  * money.js / fx() v0.2
  * Copyright 2014 Open Exchange Rates
@@ -372,7 +372,7 @@ document.addEventListener('DOMContentLoaded', function (e) {
     firstInput.value = exchangeMoney(secondInput.value, true);
   };
 });
-},{"normalize.css":7,"./index.scss":3,"money":8}],16:[function(require,module,exports) {
+},{"normalize.css":6,"./index.scss":3,"money":5}],16:[function(require,module,exports) {
 
 var global = (1, eval)('this');
 var OldModule = module.bundle.Module;
@@ -392,7 +392,7 @@ module.bundle.Module = Module;
 
 if (!module.bundle.parent && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
-  var ws = new WebSocket('ws://' + hostname + ':' + '57403' + '/');
+  var ws = new WebSocket('ws://' + hostname + ':' + '49544' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 

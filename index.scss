@@ -1,3 +1,9 @@
+@font-face {
+  font-family: 'Digital-7 Italic';
+
+  src: url('./assets/digital-7-italic.ttf') format('truetype');
+}
+
 body {
   text-align: center;
 
@@ -71,9 +77,8 @@ input {
   box-shadow: inset 0 0 20px 5px rgba(208, 0, 15, 0.2);
   text-shadow: 0 0 35px rgba(210, 0, 0, 0.7);
 
-  font-family: Digital-7 Italic;
+  font-family: 'Digital-7 Italic';
   font-size: 15vw;
-  font-style: italic;
 }
 
 .top-back, .bottom-back {
