@@ -25,10 +25,6 @@ body {
 }
 
 select, input {
-  display: block;
-
-  margin: 0 auto;
-
   color: #fff;
   border: none;
   outline: none;
@@ -57,9 +53,11 @@ select {
 }
 
 input {
+  display: block;
   overflow: hidden;
 
   width: 65vw;
+  margin: 0 auto;
   margin-top: 4vw;
   margin-bottom: 12vw;
   padding: 8px 5px 0 10px;
@@ -70,7 +68,7 @@ input {
 
   color: #fb0013;
   // border: 1px solid #8c8c8c;
-  box-shadow: inset 0 0 40px 5px rgba(208, 0, 15, 0.2);
+  box-shadow: inset 0 0 20px 5px rgba(208, 0, 15, 0.2);
   text-shadow: 0 0 35px rgba(210, 0, 0, 0.7);
 
   font-family: Digital-7 Italic;
@@ -91,4 +89,20 @@ input {
 
 .bottom-back {
   background-image: url('./assets/bot.png');
+}
+
+.select-wrapper {
+  position: relative;
+
+  display: inline-block;
+
+  padding-left: 15px;
+}
+
+.arrow-down {
+  position: absolute;
+  top: 2px;
+  left: -10px;
+
+  opacity: .6;
 }
