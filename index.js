@@ -7,8 +7,8 @@ document.addEventListener('DOMContentLoaded', function (e) {
   const secondInput = document.getElementById('second-value-input')
   const firstSelect = document.getElementById('first-select')
   const secondSelect = document.getElementById('second-select')
-
   const mainWrapper = document.getElementById('main-wrapper')
+
   mainWrapper.style.height = window.innerHeight + 'px'
 
   fetch('https://api.fixer.io/latest?base=BGN&symbols=RUB,USD,EUR,GBP,CNY,HUF')
