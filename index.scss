@@ -4,25 +4,11 @@
   src: url('./assets/digital-7-italic.ttf') format('truetype');
 }
 
-@font-face {
-  font-family: 'Arial B';
-
-  src: url('./assets/arialb.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'Arial BI';
-
-  src: url('./assets/arialbi.ttf') format('truetype');
-}
-
 body {
   text-align: center;
 
   color: #fff;
   background-color: #000;
-
-  font-family: 'Arial BI', Arial, sans-serif;
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -30,15 +16,14 @@ body {
 }
 
 .main-wrapper {
+  display: flex;
   overflow: hidden;
   flex-direction: column;
   justify-content: space-between;
-
-  height: 100vh;
 }
 
 .exchange-wrapper {
-  padding: 5vw 0;
+  padding-bottom: 4vw;
 }
 
 select, input {
@@ -47,24 +32,25 @@ select, input {
   outline: none;
   background-color: #000;
 
-  font-family: 'Arial B', Arial, sans-serif;
-
   appearance: none;
   -moz-appearance: none;
   -webkit-appearance: none;
 }
 
 h1 {
-  margin-bottom: 10vw;
+  margin-left: -2px;
+  padding: 8vw 0 4vw;
 
-  letter-spacing: 2px;
+  letter-spacing: 3px;
   text-transform: uppercase;
 
-  font-size: 8.5vw;
+  font-size: 9.5vw;
   font-weight: bold;
+  font-style: italic;
 }
 
 select {
+  margin-bottom: 4vw;
   padding-left: 35px;
 
   letter-spacing: 1.5px;
@@ -75,16 +61,12 @@ select {
 }
 
 input {
-  display: block;
-
-  width: 63vw;
-  height: 18vw;
-  margin: 0 auto;
-  margin-top: 4vw;
+  width: 65vw;
   margin-bottom: 12vw;
   padding: 5px 10px 0 10px;
 
-  text-align: center; white-space: nowrap;
+  text-align: center;
+  white-space: nowrap;
   letter-spacing: 2px;
   text-overflow: ellipsis;
 
@@ -95,12 +77,18 @@ input {
 
   font-family: 'Digital-7 Italic';
   font-size: 15vw;
-  line-height: 15vw;
+}
+
+@media screen
+  and (-webkit-min-device-pixel-ratio:0)
+  and (min-resolution: .001dpcm) {
+    // Hack for Chrome on Android
+    input { padding: 0px 10px 10px 10px; }
 }
 
 .top-back, .bottom-back {
   width: 100%;
-  height: 20vh;
+  height: 15vh;
 
   background-size: cover;
 }

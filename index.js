@@ -1,4 +1,5 @@
-import 'normalize.css'
+// import 'normalize.css'
+import 'modern-normalize/modern-normalize.css';
 import styles from './index.scss'
 import fx from 'money'
 

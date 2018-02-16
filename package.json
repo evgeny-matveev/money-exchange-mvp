@@ -14,16 +14,8 @@
   },
   "dependencies": {
     "autoprefixer": "^7.2.5",
+    "modern-normalize": "^0.4.0",
     "money": "^0.2.0",
     "normalize.css": "^7.0.0"
-  },
-  "postcss": {
-    "modules": false,
-    "plugins": {
-      "autoprefixer": {
-        "browsers": [">1%", "last 4 versions", "Firefox ESR", "not ie < 9"],
-        "flexbox": "no-2009"
-      }
-    }
   }
 }
