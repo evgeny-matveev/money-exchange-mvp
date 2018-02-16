@@ -4,6 +4,10 @@
   src: url('./assets/digital-7-italic.ttf') format('truetype');
 }
 
+.is-hidden-mobile {
+  display: none;
+}
+
 body {
   text-align: center;
 
@@ -51,7 +55,7 @@ h1 {
 
 select {
   margin-bottom: 4vw;
-  padding-left: 35px;
+  padding-left: 8.3vw;
 
   letter-spacing: 1.5px;
   text-transform: uppercase;
@@ -61,7 +65,10 @@ select {
 }
 
 input {
+  display: block;
+
   width: 65vw;
+  margin: 0 auto;
   margin-bottom: 12vw;
   padding: 5px 10px 0 10px;
 
@@ -119,4 +126,37 @@ input {
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
+}
+
+@media screen and (min-width: 960px) {
+  .is-hidden-mobile {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+
+    height: 500px;
+  }
+  h1 {
+    margin: 0;
+
+    letter-spacing: 5px;
+
+    font-size: 48px;
+    line-height: 1.4;
+  }
+  p {
+    width: 600px;
+
+    text-align: center;
+    letter-spacing: 1px;
+
+    opacity: .75;
+
+    font-size: 22px;
+    line-height: 1.4;
+  }
+  .main-wrapper {
+    display: none;
+  }
 }
